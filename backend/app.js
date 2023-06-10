@@ -1,6 +1,6 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 const { validateLink } = require('./utils/validate');
@@ -16,12 +16,13 @@ const app = express();
 
 app.use(checkSource);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(requestLogger);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -56,10 +57,8 @@ app.post(
 
 app.use(auth);
 
-app.use(cookieParser());
-
-app.use('/', require('./routes/users'));
-app.use('/', require('./routes/cards'));
+app.use(require('./routes/users'));
+app.use(require('./routes/cards'));
 
 app.use(errorLogger);
 

@@ -45,6 +45,9 @@ module.exports.createUser = (req, res, next) => {
       name, about, avatar, email, password: hash,
     }))
     .then((user) => res.send({ data: user }))
+    .then(() => res.send({
+      name, about, avatar, email,
+    }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new IncorrectDataError('Переданы некорректные данные'));
@@ -85,7 +88,7 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           maxAge: 3600000 * 24 * 7,
         })
-        .send({ jwt: token });
+        .send({ token });
     })
     .catch((err) => {
       next(err);
