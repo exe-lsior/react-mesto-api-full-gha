@@ -44,7 +44,6 @@ module.exports.createUser = (req, res, next) => {
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
-    .then((user) => res.send({ data: user }))
     .then(() => res.send({
       name, about, avatar, email,
     }))
@@ -61,17 +60,35 @@ module.exports.createUser = (req, res, next) => {
 module.exports.updateUser = (req, res, next) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
-    .orFail(() => { throw new NotFoundError('По переданному id отсутствуют данные'); })
-    .then((user) => res.send({ data: user }))
-    .catch(next);
+    .then((user) => {
+      if (user) {
+        res.send({ data: user });
+      }
+      return next(new NotFoundError('По переданному id отсутствуют данные'));
+    })
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        return next(new IncorrectDataError('Переданы некорректные данные'));
+      }
+      return next(err);
+    });
 };
 
 module.exports.updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
   User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
-    .orFail(() => { throw new NotFoundError('По переданному id отсутствуют данные'); })
-    .then((user) => res.send(user))
-    .catch(next);
+    .then((user) => {
+      if (user) {
+        res.send(user);
+      }
+      return next(new NotFoundError('По переданному id отсутствуют данные'));
+    })
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        return next(new IncorrectDataError('Переданы некорректные данные'));
+      }
+      return next(err);
+    });
 };
 
 module.exports.login = (req, res, next) => {

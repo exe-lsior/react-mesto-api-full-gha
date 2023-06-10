@@ -8,6 +8,7 @@ const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { checkSource } = require('./middlewares/cors');
+const NotFoundError = require('./utils/errors/notFoundError');
 
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
@@ -59,6 +60,10 @@ app.use(auth);
 
 app.use(require('./routes/users'));
 app.use(require('./routes/cards'));
+
+app.use('*', (req, res, next) => {
+  next(new NotFoundError('Страница не найдена'));
+});
 
 app.use(errorLogger);
 
