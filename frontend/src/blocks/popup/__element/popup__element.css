@@ -1,0 +1,5 @@
+.popup__element {
+    display: grid;
+    row-gap: 10px;
+    position: relative;
+}

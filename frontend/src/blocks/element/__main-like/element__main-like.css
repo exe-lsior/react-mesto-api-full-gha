@@ -1,0 +1,15 @@
+.element__main-like {
+    border: none;
+    padding: 0;
+    background-color: white;
+    height: 19px;
+    cursor: pointer;
+}
+.element__main-like:hover {
+    opacity: 50%;
+}
+
+
+.element__main-like:focus {
+    opacity: 100%;
+}

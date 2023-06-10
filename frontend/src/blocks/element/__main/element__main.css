@@ -1,0 +1,7 @@
+.element__main {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    min-width: 282px;
+    align-items: center;
+}

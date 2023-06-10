@@ -1,0 +1,13 @@
+.width {
+    margin: auto;
+    width: calc(100% - 31.25%);
+    min-width: 880px;
+}
+
+@media screen and (max-width: 897px) {
+    .width {
+        width: calc(100% - 11.88%);
+        min-width: 282px;
+        max-width: 879px;
+    }
+}

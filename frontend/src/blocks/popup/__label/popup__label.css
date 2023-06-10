@@ -1,0 +1,19 @@
+.popup__label {
+    font-size: 24px;
+    line-height: 29.05px;
+    font-weight: 900;
+    margin-top: 34px;
+    margin-bottom: 54px;
+    width: 358px;
+}
+
+@media screen and (max-width: 897px) {
+    .popup__label {
+        font-size: 18px;
+        line-height: 21.78px;
+        margin-left: 0;
+        margin-top: 25px;
+        margin-bottom: 75px;
+        width: 238px;
+    }
+}
