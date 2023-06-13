@@ -205,8 +205,7 @@ function App() {
     api
       .editAvatar(avatar)
       .then((response) => {
-        setCurrentUser(response.data.avatar);
-        console.log(response.data.avatar);
+        setCurrentUser(response);
         closeAllPopups();
       })
       .catch((error) => {

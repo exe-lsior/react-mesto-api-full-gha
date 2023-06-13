@@ -7,7 +7,9 @@ const IncorrectDataError = require('../utils/errors/incorrectDataError');
 module.exports.getCards = (req, res, next) => {
   Card.find({})
     .populate(['owner', 'likes'])
-    .then((cards) => res.send({ data: cards }))
+    .then((cards) => {
+      res.send(cards);
+    })
     .catch(() => {
       next(new ServerError('На сервере произошла ошибка'));
     });
