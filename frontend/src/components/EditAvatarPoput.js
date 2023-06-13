@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm.js";
 
@@ -13,7 +13,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
     evt.preventDefault();
 
     onUpdateAvatar({
-      avatar: avatarRef.current.value,
+      avatar: avatarRef.current?.value,
     });
   }
 

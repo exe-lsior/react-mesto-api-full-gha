@@ -5,7 +5,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = React.useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes.some((i) => i._id === currentUser._id)
 
   function handleClick() {
     onCardClick(card);
@@ -19,8 +19,10 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     onCardDelete(card);
   }
 
+  console.log(card)
+
   return (
-    <li className="element">
+    <div className="element">
       <img
         className="element__image"
         src={card.link}
@@ -42,7 +44,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
       {isOwn && (
         <button className="element__delete" onClick={handleCardDelete} />
       )}
-    </li>
+    </div>
   );
 }
 

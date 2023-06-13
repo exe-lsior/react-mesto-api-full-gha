@@ -7,10 +7,11 @@ function Main({
   onEditProfile,
   onAddPlace,
   onCardClick,
+  cards,
   onCardLike,
   onCardDelete,
-  cards,
-}) {
+}) 
+{
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
@@ -60,7 +61,7 @@ function Main({
               onCardLike={onCardLike}
               onCardDelete={onCardDelete}
             />
-          ))}
+            ))}
         </ul>
       </section>
     </main>
