@@ -77,7 +77,7 @@ function App() {
     api
       .getInitialCards()
       .then((response) => {
-        setCards(response.data);
+        setCards(response);
       })
       .catch((error) => {
         console.log(error);
