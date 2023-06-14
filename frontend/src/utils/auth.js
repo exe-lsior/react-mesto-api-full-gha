@@ -1,14 +1,7 @@
 export const BASE_URL = "https://api.mestechko.nomoredomains.rocks";
 
-const getResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка ${res.status}`);
-};
-
-export const register = (password, email) => {
-  return fetch(`${BASE_URL}/signup`, {
+export const authorize = (password, email) => {
+  return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     credentials: 'include',
     headers: {
@@ -21,8 +14,15 @@ export const register = (password, email) => {
   }).then(getResponse);
 };
 
-export const authorize = (password, email) => {
-  return fetch(`${BASE_URL}/signin`, {
+const getResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка ${res.status}`);
+};
+
+export const register = (password, email) => {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     credentials: 'include',
     headers: {

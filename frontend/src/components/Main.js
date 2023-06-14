@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import active from "../images/active.svg"
 
 function Main({
   onEditAvatar,
@@ -64,6 +65,7 @@ function Main({
             ))}
         </ul>
       </section>
+      <div className={active}></div>
     </main>
   );
 }
