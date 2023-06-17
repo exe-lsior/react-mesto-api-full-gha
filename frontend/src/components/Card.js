@@ -1,5 +1,6 @@
 import React from "react";
 import likeButton from "../images/like-button.svg";
+import likeActive from "../images/active.svg";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
@@ -34,10 +35,10 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
         <h2 className="element__main-name">{card.name}</h2>
         <div className="element__main-container">
           <button
-            className={`element__main-like ${isLiked && "like_active"}`}
+            className={`element__main-like`}
             type="button"
             onClick={handleLikeClick}>
-            <img src={likeButton} alt="лайк" />
+            <img src={`${isLiked ? likeActive : likeButton}`} alt="лайк" />
           </button>
           <span className="element__main-likes">{card.likes.length}</span>
         </div>
